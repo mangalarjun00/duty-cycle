@@ -1,0 +1,14 @@
+import RPi.GPIO as gpio
+import time
+pin = 40
+gpio.setmode(gpio.BOARD)
+gpio.setwarnings(False)
+gpio.setup(pin,gpio.OUT)
+p = gpio.PWM(pin,50) #50 hertz of frequency
+p.start(0)
+for i in range (11):
+    p.ChangeDutyCycle(i*10)
+    time.sleep(1)
+    p.ChangeDutyCycle(100-(i*10))
+    time.sleep(1)
+p.stop(0)
